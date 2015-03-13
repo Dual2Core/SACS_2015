@@ -1,0 +1,12 @@
+.container{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+}
+
+#onlinecount{
+	color: #00FF00;
+	position: fixed;
+	margin-left: 25px;
+}
+
