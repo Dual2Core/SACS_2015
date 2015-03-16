@@ -2,28 +2,16 @@
 //
 
 #include "stdafx.h"
+#include "Connection.h"
 
 using namespace std;
 
-#define WSA_FAILED 0
-#define WSA_SUCCESS 1
 
-#define SERVER_IP_SET 2
-#define PORT_SET 3
 
 // Default setting, change if you need
 TCHAR SERVER_IP[] = L"127.0.0.1";
 TCHAR PORT[] = L"80";
 //  [3/15/2015 DualCore]
-
-SOCKET InitializeSocket()
-{
-	WSADATA wsadata;
-	if (WSAStartup(MAKEWORD(2, 2), &wsadata))
-		return WSA_FAILED;
-	else
-		return WSA_SUCCESS;
-}
 
 
 // Use like:
@@ -42,9 +30,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 	// Run Winsock
-	if (InitializeSocket() == WSA_FAILED)
+	if (Connection::InitializeSocket() == WSA_FAILED)
 		cout << "[!] WSA initialization failed." << endl;
-
+	
+	TCHAR* result = Connection::SendNewQuery(SERVER_IP, PORT, "GET /gate.php?user=clienta HTTP/1.1\r\nHost: \r\nContent-type: application/x-www-form-urlencoded\r\n\r\n");
+	wcout <<"Final: "<< result << endl;
 	return 0;
 	// Maintain connection
 	while (!cin.eof())
