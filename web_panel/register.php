@@ -6,15 +6,16 @@ include_once 'includes/functions.php';
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Secure Login: Registration Form</title>
+        <title>Install SACS 2</title>
         <script type="text/JavaScript" src="js/sha512.js"></script> 
         <script type="text/JavaScript" src="js/forms.js"></script>
-        <link rel="stylesheet" href="styles/main.css" />
+        <link rel="stylesheet" href="css/install.css" />
     </head>
     <body>
+    <div class="container2">
         <!-- Registration form to be output if the POST variables are not
         set or if the registration script caused an error. -->
-        <h1>Register with us</h1>
+        <h1>Create Server Administrator Account</h1>
         <?php
         if (!empty($error_msg)) {
             echo $error_msg;
@@ -55,5 +56,7 @@ include_once 'includes/functions.php';
                                    this.form.confirmpwd);" /> 
         </form>
         <p>Return to the <a href="index.php">login page</a>.</p>
+        <p>Thanks to WikiHow Secure Login</p>
+    </div>
     </body>
 </html>

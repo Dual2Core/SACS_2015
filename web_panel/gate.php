@@ -18,20 +18,21 @@ if($res_tables->num_rows) // If there are results 				   // it gives nothing as 
 		$convname = $res_tables->fetch_assoc(); // Fetch the result
 		$convname = $convname['Tables_in_sacs_conv (%'.$user.'%)']; // Convert resource to string
 		
-		echo '>'.$convname."<br>"; // DELETE '<br>' <-- ONLY FOR DEVELOPMENT
 		
+		// Return only messages with unread state
 		$res_messages = $sacs_conv->query('SELECT message FROM '.$convname.' WHERE user!="'.$user.'" AND readstate=0');
 		if($res_messages->num_rows) // If there are results
-		for ($t = 0; $t < $res_messages->num_rows; $t++) 
-		{ 
-			$res_messages->data_seek($t);
-			$message = $res_messages->fetch_assoc(); // Fetch the result
-			$message = $message['message'];
-			echo ':'.$message."<br>"; // DELETE '<br>' <-- ONLY FOR DEVELOPMENT
+		{
+			echo '>'.$convname."<br>"; // DELETE '<br>' <-- ONLY FOR DEVELOPMENT
+			for ($t = 0; $t < $res_messages->num_rows; $t++) 
+			{ 
+				$res_messages->data_seek($t);
+				$message = $res_messages->fetch_assoc(); // Fetch the result
+				$message = $message['message'];
+				echo ':'.$message."<br>"; // DELETE '<br>' <-- ONLY FOR DEVELOPMENT
+			}
 		}
 	}
 
-
-//$sacs_conv->query('SELECT FROM ')
 
 ?>
