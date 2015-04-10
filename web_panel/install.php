@@ -3,8 +3,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Install SACS</title>
-	<script type="text/javascript" src="js/sha512.js"></script>
-	<script type="text/javascript" src="js/forms.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/install.css">
 	<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
 	<script type="text/javascript" src="js/install.js"></script>
