@@ -47,6 +47,10 @@ if(!mysqli_query($mysqli,'CREATE TABLE `secure_login`.`login_attempts` (
     `time` VARCHAR(30) NOT NULL
 ) ENGINE=InnoDB'))
 	error("Could not create table 'login_attempts'!");
+else
+	echo "[+] Tables created successfully!";
+	
+
 
 
 
