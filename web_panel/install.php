@@ -21,7 +21,7 @@
 		<h2>DB Config</h2>
 		<div>Done automatically after click Install.</div>
 
-		<form method="post" action="register.php">
+		<form id="detaals" method="post" action="register.php">
 		<h2>Server Admin</h2>
 		Username:<input type="text" name="sa_user" size="20"><br><br>
 		Password:<input type="text" name="sa_passw" size="20"><br><br>
