@@ -5,14 +5,14 @@
 define("HOST", "localhost");     // The host you want to connect to.
 
 // Secure Login
-define("USER", "sec_user");    // The database username. 
-define("PASSWORD", "3QtXYFF2LbXNer7tvPQb2hcA");    // The database password. 
-define("DATABASE", "secure_login");    // The database name.
+define("USER", "root");    // The database username. 
+define("PASSWORD", "");    // The database password. 
+define("DATABASE", "secure_login");    // DO NOT CHANGE THIS
  
 define("CAN_REGISTER", "any");
 define("DEFAULT_ROLE", "member");
  
-define("SECURE", FALSE);    // FOR DEVELOPMENT ONLY!!!!
+define("SECURE", FALSE);    // FOR DEVELOPMENT ONLY!!!!, MAKE IT TRUE FOR RELEASE
 
 
 // SACS

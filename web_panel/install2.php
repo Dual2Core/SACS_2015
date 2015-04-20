@@ -1,9 +1,9 @@
 <?php
 include_once 'includes/psl-config.php';
 
-$success = 'Success!<br><input type="hidden" id="status" value="success"';
+$success = 'Success!<br><input type="hidden" id="status" value="success">';
 function error($msg){
-	die('Error: '.$msg.'<br><input type="hidden" id="status" value="error"');
+	die('Error: '.$msg.'<br><input type="hidden" id="status" value="error">');
 }
 
 
@@ -17,7 +17,7 @@ if (!$mysqli) {
 if(!mysqli_query($mysqli,"CREATE DATABASE `sacs_conv`") ||
 	!mysqli_query($mysqli,"CREATE DATABASE `sacs_db`") ||
 	!mysqli_query($mysqli,"CREATE DATABASE `secure_login`"))
-	error("Could not create Databases!");
+	error("Could not create Databases! Maybe it already exist?");
 else
 	echo "[+] Databases created successfully!<br>";
 
@@ -50,22 +50,6 @@ if(!mysqli_query($mysqli,'CREATE TABLE `secure_login`.`login_attempts` (
 else
 	echo "[+] Tables created successfully!";
 	
-
-
-
-
-
-
-
-
-
-
+echo $success;
 mysqli_close($mysqli);
-
-
-
-
-
-
-
 ?>

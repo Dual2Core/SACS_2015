@@ -39,14 +39,14 @@ include_once 'includes/functions.php';
                 name="registration_form">
             Username: <input type='text' 
                 name='username' 
-                id='username' /><br>
+                id='username' value=<?php echo '"'.$_POST['sa_user'].'"' ?> /><br>
             Email: <input type="text" name="email" id="email" /><br>
             Password: <input type="password"
                              name="password" 
-                             id="password"/><br>
+                             id="password" value=<?php echo '"'.$_POST['sa_passw'].'"' ?>/><br>
             Confirm password: <input type="password" 
                                      name="confirmpwd" 
-                                     id="confirmpwd" /><br>
+                                     id="confirmpwd" value=<?php echo '"'.$_POST['sa_passw2'].'"' ?>/><br>
             <input type="button" 
                    value="Register" 
                    onclick="return regformhash(this.form,
