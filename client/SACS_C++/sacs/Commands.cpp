@@ -13,6 +13,7 @@ BOOL Command::Make(ConData InfoVar, std::string CommandVar)
 		cout << "Test command recognized successfully!" << endl;
 		return TRUE;
 	}
+
 	if (CommandType == "quit" || CommandType == "q")
 	{
 		exit(1);

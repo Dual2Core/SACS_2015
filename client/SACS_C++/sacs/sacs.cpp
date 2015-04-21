@@ -38,8 +38,6 @@ int _tmain(int argc, _TCHAR* argv[])
 		cout << "[!] WSA initialization failed." << endl;
 
 	wcout << L"IP: " << conInfo.SERVER_IP << L" PORT: " << conInfo.PORT << Connection::Test(conInfo) << endl;
-	//TCHAR* result = Connection::SendMessage(SERVER_IP, PORT, );
-	//wcout <<"Final: "<< result << endl;
 	
 	// Maintain connection
 	for (;;)
