@@ -1,9 +1,9 @@
 # SACS
 Securely Authenticated Communication System
 
-# Dependencies
+## Dependencies
 The web panel is based on Semantic ui. Download the latest source and put '/dist' into '/includes' directory.
 
-#Config
+## Config
 Configure your SQL Database details at '/includes/psl-config.php'.
-Installation php file soon...
+Then, open install.php in your browser and follow instructions.
