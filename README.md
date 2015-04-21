@@ -1,4 +1,6 @@
 # SACS
+
+[![Join the chat at https://gitter.im/Dual2Core/SACS_2015](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Dual2Core/SACS_2015?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Securely Authenticated Communication System
 
 ## Dependencies
