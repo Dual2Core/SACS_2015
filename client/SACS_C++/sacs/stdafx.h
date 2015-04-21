@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <tchar.h>
 #include <iostream>
+#include <string>
 
 #pragma comment(lib,"ws2_32.lib")
 #include <WinSock2.h>

@@ -91,3 +91,5 @@ TCHAR* Connection::SendNewQuery(TCHAR* server_ip, TCHAR* port, char* msg)
 	mbstowcs(rcvmsg, recvbuf, container_size);
 	return rcvmsg;
 }
+
+// "GET /gate.php?user=clienta HTTP/1.1\r\nHost: \r\nContent-type: application/x-www-form-urlencoded\r\n\r\n"

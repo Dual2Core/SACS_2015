@@ -3,6 +3,8 @@
 
 #include "stdafx.h"
 #include "Connection.h"
+#include "Commands.h"
+
 
 using namespace std;
 
@@ -27,19 +29,26 @@ int _tmain(int argc, _TCHAR* argv[])
 		wcscpy(SERVER_IP, argv[1]);
 		break;
 	}
+	// Load params
+	ConData conInfo;
+	wcscpy(conInfo.SERVER_IP,SERVER_IP);
+	wcscpy(conInfo.PORT,PORT);
 
 	// Run Winsock
 	if (Connection::InitializeSocket() == WSA_FAILED)
 		cout << "[!] WSA initialization failed." << endl;
 
-	wcout << L"IP: " << SERVER_IP << L" PORT: " << PORT << endl;
-	TCHAR* result = Connection::SendNewQuery(SERVER_IP, PORT, "GET /gate.php?user=clienta HTTP/1.1\r\nHost: \r\nContent-type: application/x-www-form-urlencoded\r\n\r\n");
-	wcout <<"Final: "<< result << endl;
-	return 0;
+	wcout << L"IP: " << conInfo.SERVER_IP << L" PORT: " << conInfo.PORT << endl;
+	//TCHAR* result = Connection::SendMessage(SERVER_IP, PORT, );
+	//wcout <<"Final: "<< result << endl;
+	
 	// Maintain connection
-	while (!cin.eof())
+	for (;;)
 	{
-		//ConnectToServer(SERVER_IP, PORT);
+		string command;
+		cout << "> ";
+		getline(cin,command);
+		Command::Make(conInfo,command);
 	}
 	return 0;
 }
