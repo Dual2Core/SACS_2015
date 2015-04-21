@@ -21,19 +21,25 @@ TCHAR* Connection::SendNewQuery(TCHAR* server_ip, TCHAR* port, char* msg)
 	hints.ai_protocol = IPPROTO_TCP;
 	if (GetAddrInfo(server_ip, port, &hints, &res))
 	{
+#ifdef DEBUG
 		std::cout << "[!] Failed to resolve host info!" << std::endl;
+#endif
 		return NULL;
 	}
 	ptr = res;
 	SOCKET sacsSocket = socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol);
 	if (sacsSocket == INVALID_SOCKET)
 	{
+#ifdef DEBUG
 		std::cout << "[!] The created socket is INVALID." << std::endl;
+#endif		
 		return NULL;
 	}
 	if (connect(sacsSocket, ptr->ai_addr, (int)ptr->ai_addrlen) == SOCKET_ERROR)
 	{
+#ifdef DEBUG
 		std::cout << "[!] Failed on connect." << std::endl;
+#endif		
 		closesocket(sacsSocket);
 		FreeAddrInfo(res);
 		return NULL;
@@ -42,16 +48,22 @@ TCHAR* Connection::SendNewQuery(TCHAR* server_ip, TCHAR* port, char* msg)
 	int bytescount = send(sacsSocket, msg, (int)strlen(msg), NULL);
 	if (bytescount == SOCKET_ERROR)
 	{
+#ifdef DEBUG
 		std::cout << "[!] Sending message failed." << std::endl;
+#endif		
 		closesocket(sacsSocket);
 		FreeAddrInfo(res);
 		return NULL;
 	}
+#ifdef DEBUG
 	cout << "[+] Bytes Sent: " << bytescount << endl;
+#endif
 
 	if (shutdown(sacsSocket, SD_SEND) == SOCKET_ERROR)
 	{
+#ifdef DEBUG
 		cout << "[!] Shutdown failed." << endl;
+#endif		
 		closesocket(sacsSocket);
 		FreeAddrInfo(res);
 		WSACleanup();
@@ -68,16 +80,22 @@ TCHAR* Connection::SendNewQuery(TCHAR* server_ip, TCHAR* port, char* msg)
 		RecvResult = recv(sacsSocket, recvbuf, recvbuflen, NULL);
 		if (RecvResult > 0)
 		{
+#ifdef DEBUG
 			cout << "[+] Bytes received: " << RecvResult << endl;
+#endif		
 			container_size = RecvResult;
 		} 
 		else if (RecvResult == NULL)
 		{
+#ifdef DEBUG
 			cout << "[+] Connection closed." << endl;
+#endif
 		}
 		else
 		{
+#ifdef DEBUG
 			cout << "[!] Failed to receive data!" << endl;
+#endif		
 			closesocket(sacsSocket);
 			FreeAddrInfo(res);
 			WSACleanup();
@@ -90,6 +108,13 @@ TCHAR* Connection::SendNewQuery(TCHAR* server_ip, TCHAR* port, char* msg)
 	TCHAR *rcvmsg = new TCHAR[container_size];
 	mbstowcs(rcvmsg, recvbuf, container_size);
 	return rcvmsg;
+}
+
+std::wstring Connection::Test(ConData &InfoVar)
+{
+	TCHAR* res = Connection::SendNewQuery(InfoVar.SERVER_IP, InfoVar.PORT, "GET /test.php HTTP/1.1\r\nHost: \r\nContent-type: application/x-www-form-urlencoded\r\n\r\n");
+
+	return L" CONNECTED";
 }
 
 // "GET /gate.php?user=clienta HTTP/1.1\r\nHost: \r\nContent-type: application/x-www-form-urlencoded\r\n\r\n"

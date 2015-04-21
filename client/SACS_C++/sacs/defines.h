@@ -1,7 +1,8 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
-
+// DEBUG MODE
+//#define DEBUG
 
 // WSA state
 #define WSA_FAILED 0

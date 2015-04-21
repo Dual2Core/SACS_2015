@@ -1,4 +1,5 @@
 // Connection Data
+#pragma once
 #include "stdafx.h"
 
 struct ConData

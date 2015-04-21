@@ -5,7 +5,6 @@
 #include "Connection.h"
 #include "Commands.h"
 
-
 using namespace std;
 
 
@@ -38,7 +37,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	if (Connection::InitializeSocket() == WSA_FAILED)
 		cout << "[!] WSA initialization failed." << endl;
 
-	wcout << L"IP: " << conInfo.SERVER_IP << L" PORT: " << conInfo.PORT << endl;
+	wcout << L"IP: " << conInfo.SERVER_IP << L" PORT: " << conInfo.PORT << Connection::Test(conInfo) << endl;
 	//TCHAR* result = Connection::SendMessage(SERVER_IP, PORT, );
 	//wcout <<"Final: "<< result << endl;
 	

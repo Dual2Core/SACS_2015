@@ -1,5 +1,5 @@
 // Connection functions
-
+#include "ConData.h"
 
 namespace Connection
 {
@@ -9,5 +9,7 @@ namespace Connection
 	// Returns a pointer to server respond
 	// return NULL pointer on fail
 	TCHAR* SendNewQuery(TCHAR* server_ip, TCHAR* port, char* msg);
-		
+	
+	// Test connection
+	std::wstring Test(ConData&);
 }
