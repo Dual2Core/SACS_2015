@@ -20,19 +20,18 @@ if($res_tables->num_rows) // If there are results 				   // it gives nothing as 
 		
 		
 		// Return only messages with unread state
-		$res_messages = $sacs_conv->query('SELECT message FROM '.$convname.' WHERE user!="'.$user.'" AND readstate=0');
+		$res_messages = $sacs_conv->query('SELECT message,time FROM '.$convname.' WHERE user!="'.$user.'" AND readstate=0');
 		if($res_messages->num_rows) // If there are results
 		{
-			echo '>'.$convname."<br>"; // DELETE '<br>' <-- ONLY FOR DEVELOPMENT
+			echo $convname."\n";
 			for ($t = 0; $t < $res_messages->num_rows; $t++) 
 			{ 
 				$res_messages->data_seek($t);
 				$message = $res_messages->fetch_assoc(); // Fetch the result
+				$date = $message['time'];
 				$message = $message['message'];
-				echo ':'.$message."<br>"; // DELETE '<br>' <-- ONLY FOR DEVELOPMENT
+				echo $date."\n".$message."\n";
 			}
 		}
 	}
-
-
 ?>

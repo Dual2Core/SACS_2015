@@ -25,8 +25,8 @@ switch($res->num_rows)
 		$sacs_conv->query('CREATE TABLE `'.$convname.'` (
 		`user` varchar(32) NOT NULL,
   		`message` varchar(255) NOT NULL,
-  		`time` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-  		`readstate` BOOLEAN
+  		`time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+  		`readstate` BOOLEAN DEFAULT FALSE
 		) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;');
 	case true:
 	$sacs_conv->query('INSERT INTO '.$convname.' (user,message) VALUES ("'.$user.'","'.$message.'")');

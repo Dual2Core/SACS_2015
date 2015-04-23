@@ -43,7 +43,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	for (;;)
 	{
 		string command;
-		cout << "> ";
+		cout << "sacs> ";
 		getline(cin,command);
 		Command::Make(conInfo,command);
 	}
