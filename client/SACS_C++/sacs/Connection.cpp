@@ -113,8 +113,14 @@ TCHAR* Connection::SendNewQuery(TCHAR* server_ip, TCHAR* port, char* msg)
 std::wstring Connection::Test(ConData &InfoVar)
 {
 	TCHAR* res = Connection::SendNewQuery(InfoVar.SERVER_IP, InfoVar.PORT, "GET /test.php HTTP/1.1\r\nHost: \r\nContent-type: application/x-www-form-urlencoded\r\n\r\n");
+	wstring tres = res;
+	int pos = tres.find(L"\r\n\r\n");
+	tres = tres.substr(pos + 4);
+	if (tres == L"Success")
+		return SUCCESS;
 
-	return L" CONNECTED";
+	return FAILED;
 }
+
 
 // "GET /gate.php?user=clienta HTTP/1.1\r\nHost: \r\nContent-type: application/x-www-form-urlencoded\r\n\r\n"

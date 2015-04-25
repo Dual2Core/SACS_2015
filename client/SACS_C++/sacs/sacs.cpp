@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "Connection.h"
 #include "Commands.h"
+#include "KeepAliveThread.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ TCHAR PORT[5] = L"80";
 
 
 // Use like:
-// sacs "127.0.0.1" 80
+// sacs 127.0.0.1 80
 int _tmain(int argc, _TCHAR* argv[])
 {
 	// Check for parameters
@@ -36,9 +37,25 @@ int _tmain(int argc, _TCHAR* argv[])
 	// Run Winsock
 	if (Connection::InitializeSocket() == WSA_FAILED)
 		cout << "[!] WSA initialization failed." << endl;
-
-	wcout << L"IP: " << conInfo.SERVER_IP << L" PORT: " << conInfo.PORT << Connection::Test(conInfo) << endl;
+	wstring conTest = Connection::Test(conInfo);
 	
+	// Print out General Info
+	wcout << L"IP: " << conInfo.SERVER_IP << L" PORT: " << conInfo.PORT << conTest << endl;
+	
+	// Quit if the connection is not present
+	if (conTest == FAILED)
+	{
+		wcout << L"Connecting to server failed, quiting the application..." << endl;
+		exit(1);
+	}
+
+	// Select nickname
+	cout << "Maximum length of nickname is 32.\nSelect nickname: ";
+	cin >> conInfo.nick;
+	cin.sync();
+	// Begin keep-alive thread
+	KeepAliveThread KAThread(conInfo);
+
 	// Maintain connection
 	for (;;)
 	{

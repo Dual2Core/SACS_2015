@@ -6,4 +6,5 @@ struct ConData
 {
 	TCHAR SERVER_IP[64];
 	TCHAR PORT[5];
+	std::string nick;
 };

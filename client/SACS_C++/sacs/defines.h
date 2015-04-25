@@ -15,5 +15,8 @@
 // Connection opts
 #define DEFAULT_BUFLEN 512
 
+// Connection states
+#define SUCCESS L" CONNECTED"
+#define FAILED L" NOT CONNECTED"
 
 #endif

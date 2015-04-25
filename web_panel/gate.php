@@ -2,12 +2,50 @@
 
 // Check if vars are set
 if(isset($_GET['user']))
+{
 	include_once 'includes/sacs_conv_connect.php';
+	include_once 'includes/sacs_db_connect.php';
+}
 else
 	die('Received not enough data!');
 
 // Get vars
 $user = $_GET['user'];
+$sacs_db->query('DELETE FROM `users` WHERE `lastseen`< NOW() - INTERVAL 10 SECOND');
+
+// Show online users
+if(isset($_GET['whoisonline']))
+{
+	$result = $sacs_db->query('SELECT `nickname` FROM users');
+	if($result->num_rows)
+	{
+		for ($i=0; $i < $result->num_rows; $i++) 
+		{ 
+			$result->data_seek($i);
+			$nick = $result->fetch_assoc();
+			$nick = $nick['nickname'];
+			echo $nick."\n";
+		}
+	}
+	goto end;
+}
+
+
+// Maintain user presence
+if(isset($_GET['keepalive']))
+{
+	$result = $sacs_db->query('SELECT nickname FROM users WHERE nickname="'.$user.'"');
+	$client_ip = $_SERVER['REMOTE_ADDR'];
+	if(!$result->num_rows)
+	{
+		$sacs_db->query('INSERT INTO `users`(`nickname`, `client_ip`) VALUES ("'.$user.'", "'.$client_ip.'")');
+	}
+	else
+	{
+		$sacs_db->query('UPDATE `users` SET `lastseen`=CURRENT_TIMESTAMP(0) WHERE nickname="'.$user.'"');
+	}
+	die("Done!");
+}
 
 // Check for table names
 $res_tables = $sacs_conv->query('SHOW TABLES LIKE "%'.$user.'%"'); // Possible to get whole data, 
@@ -34,4 +72,5 @@ if($res_tables->num_rows) // If there are results 				   // it gives nothing as 
 			}
 		}
 	}
+	end:
 ?>
