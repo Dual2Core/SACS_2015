@@ -16,7 +16,7 @@ $sacs_db->query('DELETE FROM `users` WHERE `lastseen`< NOW() - INTERVAL 10 SECON
 // Show online users
 if(isset($_GET['whoisonline']))
 {
-	$result = $sacs_db->query('SELECT `nickname` FROM users');
+	$result = $sacs_db->query('SELECT `nickname` FROM users ORDER BY `nickname` ASC');
 	if($result->num_rows)
 	{
 		for ($i=0; $i < $result->num_rows; $i++) 
@@ -47,7 +47,7 @@ if(isset($_GET['keepalive']))
 	die("Done!");
 }
 
-// Check for table names
+// Check for unread messages
 $res_tables = $sacs_conv->query('SHOW TABLES LIKE "%'.$user.'%"'); // Possible to get whole data, 
 if($res_tables->num_rows) // If there are results 				   // it gives nothing as long as it is encrypted
 	for($s = 0; $s < $res_tables->num_rows; $s++)

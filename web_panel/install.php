@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Install SACS</title>
 	<link rel="stylesheet" type="text/css" href="css/install.css">
-	<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script type="text/javascript" src="js/install.js"></script>
 </head>
 <body>

@@ -12,7 +12,7 @@ sec_session_start();
         <link rel="stylesheet" href="includes/dist/semantic.min.css">
         <link rel="stylesheet" href="css/main.css" />
         <script type="text/javascript" src="includes/dist/semantic.min.js"></script>
-        <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
 <?php
 if (login_check($mysqli) == true){
