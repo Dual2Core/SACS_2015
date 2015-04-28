@@ -8,7 +8,7 @@ namespace Connection
 
 	// Returns a pointer to server respond
 	// return NULL pointer on fail
-	TCHAR* SendNewQuery(TCHAR* server_ip, TCHAR* port, char* msg);
+	std::wstring SendNewQuery(TCHAR* server_ip, TCHAR* port, char* msg);
 	
 	// Test connection
 	std::wstring Test(ConData&);

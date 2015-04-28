@@ -12,7 +12,7 @@ SOCKET Connection::InitializeSocket()
 		return WSA_SUCCESS;
 }
 
-TCHAR* Connection::SendNewQuery(TCHAR* server_ip, TCHAR* port, char* msg)
+wstring Connection::SendNewQuery(TCHAR* server_ip, TCHAR* port, char* msg)
 {
 	struct addrinfoW *res, *ptr, hints;
 	ZeroMemory(&hints, sizeof(hints));
@@ -107,20 +107,20 @@ TCHAR* Connection::SendNewQuery(TCHAR* server_ip, TCHAR* port, char* msg)
 	container_size++;
 	TCHAR *rcvmsg = new TCHAR[container_size];
 	mbstowcs(rcvmsg, recvbuf, container_size);
-	return rcvmsg;
+	wstring tres = rcvmsg;
+	int pos = tres.find(L"\r\n\r\n");
+	tres = tres.substr(pos + 4);
+	return tres;
 }
 
 std::wstring Connection::Test(ConData &InfoVar)
 {
-	TCHAR* res = Connection::SendNewQuery(InfoVar.SERVER_IP, InfoVar.PORT, "GET /test.php HTTP/1.1\r\nHost: \r\nContent-type: application/x-www-form-urlencoded\r\n\r\n");
-	wstring tres = res;
-	int pos = tres.find(L"\r\n\r\n");
-	tres = tres.substr(pos + 4);
-	if (tres == L"Success")
+	wstring res = Connection::SendNewQuery(InfoVar.SERVER_IP, InfoVar.PORT, "GET /test.php HTTP/1.1\r\nHost: \r\nContent-type: application/x-www-form-urlencoded\r\n\r\n");
+	
+	if (res == L"Success")
 		return SUCCESS;
-
+	
 	return FAILED;
 }
-
 
 // "GET /gate.php?user=clienta HTTP/1.1\r\nHost: \r\nContent-type: application/x-www-form-urlencoded\r\n\r\n"
