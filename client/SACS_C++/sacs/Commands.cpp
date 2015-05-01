@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Commands.h"
 #include "Connection.h"
+#include "Session.h"
 
 using namespace std;
 
@@ -8,11 +9,14 @@ using namespace std;
 BOOL Command::Make(ConData InfoVar, std::string CommandVar)
 {
 	string CommandType = Recognize(CommandVar);
+	string arg1 = CutArg(CommandVar, 1);
+
 	if (CommandType == "test")
 	{
 		cout << "Test command recognized successfully!" << endl;
 		return TRUE;
 	}
+	else
 	if (CommandType == "whoisonline")
 	{
 		cout << "Users online:" << endl;
@@ -23,16 +27,25 @@ BOOL Command::Make(ConData InfoVar, std::string CommandVar)
 		wcout << list<<endl;
 		return TRUE;
 	}
+	else
+	if (CommandType == "startsession")
+	{
+		Session Ssn;
+		wstring target(arg1.begin(), arg1.end());
+		
+		Ssn.CreateSession(InfoVar, target);
+		return TRUE;
+	}
 
 
 	if (CommandType == "quit" || CommandType == "q")
 	{
-		exit(1);
+		return FALSE;
 	}
 	else
 		cout << "Cannot recognise command \"" << CommandVar << "\"" << endl;
 	
-	return FALSE;
+	return TRUE;
 }
 
 std::string Command::Recognize(std::string CommandVar)
@@ -40,4 +53,22 @@ std::string Command::Recognize(std::string CommandVar)
 	string first_space = " ";
 	int pos = CommandVar.find(first_space);
 	return CommandVar.substr(0, pos);
+}
+
+std::string Command::CutArg(std::string CommandVar, int ArgNumber)
+{
+	string space = " ";
+	if (CommandVar.find(space) < 0)
+		return NULL;
+
+	for (int i = 1; i <= ArgNumber; i++)
+	{
+		int pos = CommandVar.find(space);
+		CommandVar = CommandVar.substr(pos + 1);
+	}
+	int pos = CommandVar.find(space);
+	if (pos > 0)
+		CommandVar = CommandVar.substr(0, pos);
+	
+	return CommandVar;
 }

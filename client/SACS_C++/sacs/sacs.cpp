@@ -62,7 +62,10 @@ int _tmain(int argc, _TCHAR* argv[])
 		string command;
 		cout << "sacs> ";
 		getline(cin,command);
-		Command::Make(conInfo,command);
+		cin.clear();
+		cin.sync();
+		if(Command::Make(conInfo,command) == FALSE)
+			break;
 	}
 	return 0;
 }
