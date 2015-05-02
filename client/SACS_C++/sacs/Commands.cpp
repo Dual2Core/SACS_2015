@@ -5,11 +5,15 @@
 
 using namespace std;
 
+// Sessions Management
+vector <Session> Sessions;
+
 // Recognize the command and make it
 BOOL Command::Make(ConData InfoVar, std::string CommandVar)
 {
 	string CommandType = Recognize(CommandVar);
 	string arg1 = CutArg(CommandVar, 1);
+	string arg2 = CutArg(CommandVar, 2);
 
 	if (CommandType == "test")
 	{
@@ -32,9 +36,24 @@ BOOL Command::Make(ConData InfoVar, std::string CommandVar)
 	{
 		Session Ssn;
 		wstring target(arg1.begin(), arg1.end());
-		
-		Ssn.CreateSession(InfoVar, target);
+		cout << "Creating new session..." << endl;
+		if (!Ssn.CreateSession(InfoVar, target))
+		{
+			cout << "Failed to create new session!" << endl;
+			return TRUE;
+		}
+
+		cout << "New session created!" << endl;
+		Sessions.push_back(Ssn);
 		return TRUE;
+	}
+	else
+	if (CommandType == "sendto")
+	{
+		string Target = arg1;
+		string Message = arg2;
+
+
 	}
 
 

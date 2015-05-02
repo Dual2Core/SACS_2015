@@ -9,3 +9,6 @@ The web panel is based on Semantic ui. Download the latest source and put '/dist
 ## Config
 Configure your MySQL Database details at '/includes/psl-config.php'.
 Then, open install.php in your browser and follow instructions.
+
+## Credits
+Thanks to Zvika Ferentz who provided ConsoleLogger class, which I had modified to use in my project.

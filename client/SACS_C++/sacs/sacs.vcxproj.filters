@@ -19,6 +19,9 @@
     <ClCompile Include="Session.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ConsoleLogger.cpp">
+      <Filter>ConsoleLogger</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Commands.h">
@@ -45,6 +48,9 @@
     <ClInclude Include="Session.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ConsoleLogger.h">
+      <Filter>ConsoleLogger</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -52,6 +58,9 @@
     </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{16396bd0-4767-4ea8-b6a4-d359d3372cb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ConsoleLogger">
+      <UniqueIdentifier>{a2541f94-363c-4af3-97f6-91919bf52007}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
