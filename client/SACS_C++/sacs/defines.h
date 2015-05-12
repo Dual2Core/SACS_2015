@@ -19,4 +19,11 @@
 #define SUCCESS L" CONNECTED"
 #define FAILED L" NOT CONNECTED"
 
+// Cutting options
+#define MESSAGE_TYPE -2
+
+// Adding messages mode
+#define SEND 8
+#define RECEIVE 9
+
 #endif

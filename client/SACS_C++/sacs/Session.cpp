@@ -1,11 +1,13 @@
 #include "stdafx.h"
 #include "Session.h"
-#include "ConsoleLogger.h"
+
 
 using namespace std;
 
 // Init
 UINT Session::SessionIDCounter = 0;
+
+
 
 Session::Session()
 {
@@ -54,8 +56,14 @@ bool Session::CreateSession(ConData ConnectionInfo, std::wstring TargetName)
 	string _tgt(TargetName.begin(), TargetName.end());
 	string SessionTitle = "Session with " + _tgt;
 	
-	CConsoleLogger SessionWindow;
-	SessionWindow.Create(SessionTitle.c_str());
+	this->SessionWindow.Create(SessionTitle.c_str());
+	this->AddMessage("Session created successfully!");
 
 	return TRUE;
+}
+
+void Session::AddMessage(string msg)
+{
+	this->SessionWindow.printf(msg.c_str());
+	this->SessionWindow.printf("\n");
 }

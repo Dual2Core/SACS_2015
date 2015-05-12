@@ -5,6 +5,7 @@
 #include "Connection.h"
 #include "Commands.h"
 #include "KeepAliveThread.h"
+#include "SessionManager.h"
 
 using namespace std;
 
@@ -55,6 +56,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	cin.sync();
 	// Begin keep-alive thread
 	KeepAliveThread KAThread(conInfo);
+	// Activate Session Manager
+	SessionManager SMgr;
 
 	// Maintain connection
 	for (;;)
@@ -64,7 +67,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		getline(cin,command);
 		cin.clear();
 		cin.sync();
-		if(Command::Make(conInfo,command) == FALSE)
+		if(Command::Make(conInfo,command,SMgr) == FALSE)
 			break;
 	}
 	return 0;

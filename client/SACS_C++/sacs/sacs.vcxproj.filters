@@ -22,6 +22,9 @@
     <ClCompile Include="ConsoleLogger.cpp">
       <Filter>ConsoleLogger</Filter>
     </ClCompile>
+    <ClCompile Include="SessionManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Commands.h">
@@ -50,6 +53,9 @@
     </ClInclude>
     <ClInclude Include="ConsoleLogger.h">
       <Filter>ConsoleLogger</Filter>
+    </ClInclude>
+    <ClInclude Include="SessionManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -32,4 +32,5 @@ switch($res->num_rows)
 	$sacs_conv->query('INSERT INTO '.$convname.' (user,message) VALUES ("'.$user.'","'.$message.'")');
 }
 
+echo "Done";
 ?>
