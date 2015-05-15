@@ -25,6 +25,9 @@
     <ClCompile Include="SessionManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MessageAcceptorThread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Commands.h">
@@ -55,6 +58,9 @@
       <Filter>ConsoleLogger</Filter>
     </ClInclude>
     <ClInclude Include="SessionManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageAcceptorThread.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

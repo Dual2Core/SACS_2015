@@ -14,14 +14,14 @@ SessionManager::~SessionManager()
 }
 
 
-bool SessionManager::IsSessionActiveWith(std::wstring Target)
+BOOL SessionManager::IsSessionActiveWith(std::wstring Target)
 {
 	for (auto Session : SDB)
 	{
 		if (Session.Target == Target)
 			return TRUE;
 	}
-	return false;
+	return FALSE;
 }
 
 
@@ -58,7 +58,6 @@ void SessionManager::AddMessageToSession(short int MODE, std::wstring Target, st
 	{
 		if (Session.Target == Target)
 		{
-			std::cout << "SMgr mhpipe = " << Session.SessionWindow.m_hPipe << endl;
 			switch (MODE)
 			{
 			case SEND:
