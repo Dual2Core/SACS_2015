@@ -24,7 +24,7 @@ wstring Connection::SendNewQuery(TCHAR* server_ip, TCHAR* port, char* msg)
 #ifdef DEBUG
 		std::cout << "[!] Failed to resolve host info!" << std::endl;
 #endif
-		return L"";
+		return NULL;
 	}
 	ptr = res;
 	SOCKET sacsSocket = socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol);
@@ -33,7 +33,7 @@ wstring Connection::SendNewQuery(TCHAR* server_ip, TCHAR* port, char* msg)
 #ifdef DEBUG
 		std::cout << "[!] The created socket is INVALID." << std::endl;
 #endif		
-		return L"";
+		return NULL;
 	}
 	if (connect(sacsSocket, ptr->ai_addr, (int)ptr->ai_addrlen) == SOCKET_ERROR)
 	{
@@ -42,7 +42,7 @@ wstring Connection::SendNewQuery(TCHAR* server_ip, TCHAR* port, char* msg)
 #endif		
 		closesocket(sacsSocket);
 		FreeAddrInfo(res);
-		return L"";
+		return NULL;
 	}
 
 	int bytescount = send(sacsSocket, msg, (int)strlen(msg), NULL);
@@ -53,7 +53,7 @@ wstring Connection::SendNewQuery(TCHAR* server_ip, TCHAR* port, char* msg)
 #endif		
 		closesocket(sacsSocket);
 		FreeAddrInfo(res);
-		return L"";
+		return NULL;
 	}
 #ifdef DEBUG
 	cout << "[+] Bytes Sent: " << bytescount << endl;
@@ -67,7 +67,7 @@ wstring Connection::SendNewQuery(TCHAR* server_ip, TCHAR* port, char* msg)
 		closesocket(sacsSocket);
 		FreeAddrInfo(res);
 		WSACleanup();
-		return L"";
+		return NULL;
 	}
 
 	// Attempt to receive data
@@ -99,7 +99,7 @@ wstring Connection::SendNewQuery(TCHAR* server_ip, TCHAR* port, char* msg)
 			closesocket(sacsSocket);
 			FreeAddrInfo(res);
 			WSACleanup();
-			return L"";
+			return NULL;
 		}
 	} while (RecvResult > 0);
 
@@ -121,17 +121,6 @@ std::wstring Connection::Test(ConData &InfoVar)
 		return SUCCESS;
 	
 	return FAILED;
-}
-
-BOOL Connection::IsNicknameAvailable(ConData& InfoVar, std::string Nickname)
-{
-	string query = "GET /gate.php?user=NULL&whoisonline=1 HTTP/1.1\r\nHost: \r\nContent-type: application/x-www-form-urlencoded\r\n\r\n";
-	wstring wres = SendNewQuery(InfoVar.SERVER_IP, InfoVar.PORT, (char*)query.c_str());
-	string res(wres.begin(), wres.end());
-	if (res.find(Nickname) == res.npos)
-		return TRUE;
-
-	return FALSE;
 }
 
 // "GET /gate.php?user=clienta HTTP/1.1\r\nHost: \r\nContent-type: application/x-www-form-urlencoded\r\n\r\n"

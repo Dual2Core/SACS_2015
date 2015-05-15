@@ -45,6 +45,9 @@ BOOL Command::Make(ConData InfoVar, std::string CommandVar, SessionManager &SMgr
 
 		cout << "New session created!" << endl;
 		SMgr.AddSession(Ssn);
+		cout << "mh_pipe = " << Ssn.SessionWindow.m_hPipe << endl;
+		Ssn.AddMessage("Session created!");
+		cout << "mh_pipe = " << Ssn.SessionWindow.m_hPipe << endl;
 		return TRUE;
 	}
 	else
@@ -61,17 +64,18 @@ BOOL Command::Make(ConData InfoVar, std::string CommandVar, SessionManager &SMgr
 		if (SendStatus != L"Done")
 			cout << "Error occurred while sending message!" << endl;
 		wstring tgt(Target.begin(), Target.end());
-
-		SMgr.AddMessageToSession(SEND, tgt, arg2);
+		wcout << tgt << endl;
+		SMgr.AddMessageToSession(SEND, tgt, Message);
 		return TRUE;
 	}
-	else
 	if (CommandType == "nsession")
 	{
 		cout << SMgr.NumberOfActiveSessions() << endl;
 		return TRUE;
 	}
-	else
+	
+
+
 	if (CommandType == "quit" || CommandType == "q")
 	{
 		return FALSE;

@@ -5,8 +5,9 @@
 using namespace std;
 
 
-KeepAliveThread::KeepAliveThread(ConData ConInf) : ConInfo(ConInf)
+KeepAliveThread::KeepAliveThread(ConData ConInf)
 {
+	ConInfo = ConInf;
 	_beginthread(&KeepAliveThread::threadaddr, 0, this);
 }
 

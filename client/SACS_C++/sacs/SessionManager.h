@@ -9,7 +9,7 @@ private:
 public:
 	SessionManager();
 	~SessionManager();
-	BOOL IsSessionActiveWith(std::wstring Target);
+	bool IsSessionActiveWith(std::wstring Target);
 	void AddSession(Session &SessionObject);
 	void AddMessageToSession(short int MODE,std::wstring Target,std::string msg);
 	void DestroySession(std::wstring Target);

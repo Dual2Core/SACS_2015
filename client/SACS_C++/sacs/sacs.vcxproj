@@ -80,7 +80,6 @@
     <ClInclude Include="ConsoleLogger.h" />
     <ClInclude Include="defines.h" />
     <ClInclude Include="KeepAliveThread.h" />
-    <ClInclude Include="MessageAcceptorThread.h" />
     <ClInclude Include="Session.h" />
     <ClInclude Include="SessionManager.h" />
     <ClInclude Include="stdafx.h" />
@@ -93,7 +92,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="KeepAliveThread.cpp" />
-    <ClCompile Include="MessageAcceptorThread.cpp" />
     <ClCompile Include="sacs.cpp" />
     <ClCompile Include="Session.cpp" />
     <ClCompile Include="SessionManager.cpp" />
