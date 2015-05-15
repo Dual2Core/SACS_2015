@@ -71,6 +71,9 @@ if($res_tables->num_rows) // If there are results 				   // it gives nothing as 
 				echo $date."\n".$message."\n";
 			}
 		}
+
+		// Set messages state as read
+		$sacs_conv->query('UPDATE '.$convname.' SET readstate=1 WHERE user!="'.$user.'"');
 	}
 	end:
 ?>
