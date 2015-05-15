@@ -37,7 +37,6 @@ bool Session::SetParameters(ConData _InfoVar, std::wstring _target)
 
 	this->InfoVar = _InfoVar;
 	this->Target = _target;
-	wcout << L"Parameters set!" << endl;
 	return TRUE;
 }
 

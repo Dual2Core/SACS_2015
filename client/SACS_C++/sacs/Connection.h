@@ -12,4 +12,7 @@ namespace Connection
 	
 	// Test connection
 	std::wstring Test(ConData&);
+	
+	// Is nickname free?
+	BOOL IsNicknameAvailable(ConData&, std::string);
 }

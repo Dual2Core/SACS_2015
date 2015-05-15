@@ -6,6 +6,7 @@
 #include "Commands.h"
 #include "KeepAliveThread.h"
 #include "SessionManager.h"
+#include "MessageAcceptorThread.h"
 
 using namespace std;
 
@@ -51,13 +52,26 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 	// Select nickname
-	cout << "Maximum length of nickname is 32.\nSelect nickname: ";
-	cin >> conInfo.nick;
-	cin.sync();
+	for (;;)
+	{
+		cout << "Maximum length of nickname is 32.\nSelect nickname: ";
+		string nick;
+		cin >> nick;
+		cin.sync();
+		if (Connection::IsNicknameAvailable(conInfo, nick))
+		{
+			conInfo.nick = nick;
+			break;
+		}
+		else
+			cout << "Nickname " + nick + " is already taken!" << endl;
+	}
 	// Begin keep-alive thread
 	KeepAliveThread KAThread(conInfo);
 	// Activate Session Manager
 	SessionManager SMgr;
+	// Begin message acceptor thread
+	MessageAcceptorThread MAThread(conInfo, SMgr);
 
 	// Maintain connection
 	for (;;)
